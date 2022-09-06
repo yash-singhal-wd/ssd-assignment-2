@@ -2,6 +2,7 @@ DELIMITER //
 
 CREATE PROCEDURE PopulateNewHike2022()
 BEGIN 
+    -- DROP PROCEDURE IF EXISTS PopulateNewHike2022;
     DROP VIEW IF EXISTS requiredPersonHike;
     TRUNCATE TABLE hike2022;
 
