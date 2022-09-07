@@ -3,7 +3,7 @@ DELIMITER //
 CREATE PROCEDURE PopulatePersonJoining()
 BEGIN
     TRUNCATE Table PersonJoining;
-    INSERT INTO PersonJoining(EmpIDFK, FirstName, LastName, DateofBirth, Age, DateOfJoining, DayofJoining, MonthofJoining, YearofJoining, WorkExpinDays)
+    INSERT INTO PersonJoining(EmpIDFK, FirstName, LastName, DateofBirth, Age, DateofJoining, DayofJoining, MonthofJoining, YearofJoining, WorkExpinDays)
     SELECT 
         EmpID, 
         FirstName, 

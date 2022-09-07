@@ -17,6 +17,8 @@ BEGIN
     Select EmpID, FirstName, LastName, Gender, WeightInKgs, LastHike, Salary AS LastSalary, (LastHike+2) AS NewHike, (Salary*(LastHike/100+1)) As NewSalary
     from requiredPersonHike;
 
+    DROP VIEW IF EXISTS requiredPersonHike;
+    
     Select * from hike2022;
 
 END //
