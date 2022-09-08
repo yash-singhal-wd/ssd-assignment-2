@@ -41,7 +41,7 @@ CREATE TABLE hike2022 (
 -- Q1b --
 
 CREATE TABLE PersonJoining (
-    PJoinPK int,
+    PJoinPK int AUTO_INCREMENT Primary key,
     EmpIDFK int,
     FirstName varchar(255),
     LastName varchar(255),
@@ -52,6 +52,39 @@ CREATE TABLE PersonJoining (
     MonthofJoining varchar(50),
     YearofJoining varchar(5),
     WorkExpinDays int,
-    PRIMARY KEY (PJoinPK),
     FOREIGN KEY (EmpIDFK) REFERENCES person(EmpID)
 );
+
+-- Q1c --
+
+CREATE TABLE PersonTransfer (
+    PTPK int AUTO_INCREMENT Primary key,
+    EmpIDFK int,
+    FirstName varchar(255),
+    LastName varchar(255),
+    Gender varchar(10),
+    DateOfJoining varchar(12),
+    CurrentRegion varchar(255),
+    NewRegion varchar(255),
+    FOREIGN KEY (EmpIDFK) REFERENCES person(EmpID)
+);
+
+-- Q2 --
+CREATE TABLE Country (
+    countrycode varchar(10) Primary key,
+    countryname varchar(255)
+);
+
+CREATE TABLE time_zone(
+    zonename varchar(255),
+    countrycode varchar(10), 
+    timezonecode varchar(10), 
+    timestart BIGINT, 
+    gmtoffset int, 
+    dst int
+);
+
+LOAD DATA LOCAL INFILE '/home/yash/Downloads/data-main/timezone/country.csv' 
+	INTO TABLE Country 
+	FIELDS TERMINATED BY ',' 
+	LINES TERMINATED BY '\n';

@@ -85,9 +85,9 @@ BEGIN
             and toShow2.EmployeeRegion=toShow3.EmployeeRegion
             and toShow3.EmployeeRegion=toShow1.EmployeeRegion;
 
-    DROP TABLE IF EXISTS toshow1;
-    DROP TABLE IF EXISTS toshow2;
-    DROP TABLE IF EXISTS toshow3;
+    DROP TABLE IF EXISTS toShow1;
+    DROP TABLE IF EXISTS toShow2;
+    DROP TABLE IF EXISTS toShow3;
 
     DROP VIEW IF EXISTS time_details;
 END // 
