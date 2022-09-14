@@ -64,7 +64,7 @@ CALL PopulatePersonJoining();
 ```
 USE DATABASE ASSIGNMENT2;
 DROP PROCEDURE PopulatePersonTransfer;
-source q1a.sql;
+source q1c.sql;
 CALL PopulatePersonTransfer();
 ```
 
