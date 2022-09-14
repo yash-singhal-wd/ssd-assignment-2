@@ -2,20 +2,42 @@ DELIMITER //
 
 CREATE PROCEDURE PopulatePersonJoining()
 BEGIN
+
+    CREATE TABLE IF NOT EXISTS PersonJoining (
+        PJoinPK int AUTO_INCREMENT Primary key,
+        EmpIDFK int,
+        FirstName varchar(255),
+        LastName varchar(255),
+        DateOfBirth varchar(12),
+        Age int,
+        DateOfJoining varchar(12),
+        DayofJoining varchar(5),
+        MonthofJoining varchar(50),
+        YearofJoining varchar(5),
+        WorkExpinDays int,
+        FOREIGN KEY (EmpIDFK) REFERENCES person(EmpID)
+    );
+
     TRUNCATE Table PersonJoining;
+    
     INSERT INTO PersonJoining(EmpIDFK, FirstName, LastName, DateofBirth, Age, DateofJoining, DayofJoining, MonthofJoining, YearofJoining, WorkExpinDays)
     SELECT 
         EmpID, 
         FirstName, 
         LastName, 
         DOB as DateOfBirth,
-        DATEDIFF(CURDATE(),
-            CONCAT(
-                SUBSTRING_INDEX(DOB, '/', -1), "-",
-                SUBSTRING_INDEX(DOB, '/', 1), "-",
-                SUBSTRING(SUBSTRING_INDEX(DOB, '/', 2), LENGTH(SUBSTRING_INDEX(DOB, '/', 2))-1,2)
-            )
-        )/365.2425 As Age,
+        DATE_FORMAT(
+            FROM_DAYS(
+                DATEDIFF(
+                    now(),
+                    CONCAT(
+                    SUBSTRING_INDEX(DOB, '/', -1), "-",
+                    SUBSTRING_INDEX(DOB, '/', 1), "-",
+                    SUBSTRING(SUBSTRING_INDEX(DOB, '/', 2), LENGTH(SUBSTRING_INDEX(DOB, '/', 2))-1,2)
+                    )
+                )
+            ), '%Y')+0 
+        As Age,
         DateOfJoining,
         SUBSTRING(SUBSTRING_INDEX(DateOfJoining, '/', 2), LENGTH(SUBSTRING_INDEX(DateOfJoining, '/', 2))-1,2) As DayofJoining,
         CASE
@@ -57,3 +79,6 @@ BEGIN
 END //
 
 DELIMITER ;
+
+--DROP PROCEDURE PopulatePersonJoining;
+--CALL PopulatePersonJoining();

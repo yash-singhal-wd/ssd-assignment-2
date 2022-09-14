@@ -93,3 +93,6 @@ BEGIN
 END // 
 
 DELIMITER ;
+
+-- DROP PROCEDURE toShow;
+-- CALL toShow();
