@@ -107,7 +107,7 @@ CREATE TABLE time_zone(
 ```
 USE DATABASE ASSIGNMENT2;
 DROP PROCEDURE timezoneconvert;
-source q1a.sql;
+source q2.sql;
 CALL timezoneconvert('29-07-2022 02:53:00', 'EST', 'IST');
 
 OUTPUT:
