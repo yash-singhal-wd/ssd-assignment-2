@@ -44,7 +44,7 @@ DELIMITER ;
 -- CALL PopulateNewHike2022();
 
 
-------- PERSON DEFININTION --------
+------ PERSON DEFININTION --------
 
 -- CREATE TABLE person (
 --     EmpID int NOT NULL PRIMARY KEY,
