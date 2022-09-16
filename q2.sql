@@ -1,13 +1,17 @@
 DELIMITER //
 
-CREATE PROCEDURE timezoneconvert(
-	IN sourcedatetimestamp VARCHAR(255),
-    IN sourcetimezonecode VARCHAR(5),
-    IN targettimezone VARCHAR(5)
-)
+DROP FUNCTION IF EXISTS timezoneconvert;
+
+CREATE FUNCTION timezoneconvert(
+	sourcedatetimestamp VARCHAR(255),
+    sourcetimezonecode VARCHAR(5),
+    targettimezone VARCHAR(5)
+) RETURNS varchar(100)
+READS SQL DATA
 BEGIN
     DECLARE signed_hour varchar(50);
     DECLARE real_date varchar(50);
+    DECLARE target_time_stamp varchar(100);
     DECLARE time_jump1 DEC(10,4); 
     DECLARE time_jump2 DEC(10,4); 
 
@@ -53,11 +57,13 @@ BEGIN
             ':',
             CONCAT( '0', CAST(CAST(ABS((MOD(signed_hour, 1))*60)AS UNSIGNED)AS CHAR))
         )
-    ), '.', 1 ) as converted_time;
+    ), '.', 1 ) INTO target_time_stamp;
+
+    RETURN target_time_stamp;
 	
 END //
 
 DELIMITER ;
 
--- DROP PROCEDURE timezoneconvert;
--- CALL timezoneconvert('29-07-2022 02:53:00', 'EST', 'IST');
+-- DROP FUNCTION timezoneconvert;
+-- SELECT timezoneconvert('29-07-2022 02:53:00', 'EST', 'IST');

@@ -12,6 +12,7 @@
 - Then copy and paste the code in q1a.sql, or, run the file using source command.
 - This creates a procedure named 'PopulateNewHike2022'. 
 - Running the procedure shows the newly populated 'hike2022' table.
+- The procedure already selects * from the hike2022 table.
 
 ```
 USE DATABASE ASSIGNMENT2;
@@ -100,22 +101,24 @@ CREATE TABLE time_zone(
 ## Execution
 - First go to the database that contains time_zone table. 
 - Then copy and paste the code in q2.sql, or, run the file using source command.
-- This creates a procedure named 'timezoneconvert'. 
-- Running the procedure shows the converted time from source timezone to target timezone.
+- This creates a function named 'timezoneconvert'. 
+- Running the function shows the converted time from source timezone to target timezone.
 - The timestamp is the first argument, sourcetimezone is the second argument and targettimezone is the third argument.
+- All three arguments are required and must be of correct format for the query to run successfully.
 
 ```
 USE DATABASE ASSIGNMENT2;
-DROP PROCEDURE timezoneconvert;
+DROP FUNCTION IF EXISTS timezoneconvert;
 source q2.sql;
-CALL timezoneconvert('29-07-2022 02:53:00', 'EST', 'IST');
+SELECT timezoneconvert('29-07-2022 02:53:00', 'EST', 'IST');
 
 OUTPUT:
-+---------------------+
-| converted_time      |
-+---------------------+
-| 2022-07-29 08:53:00 |
-+---------------------+
++------------------------------------------------------+
+| timezoneconvert('29-07-2022 02:53:00', 'EST', 'IST') |
++------------------------------------------------------+
+| 2022-07-29 08:53:00                                  |
++------------------------------------------------------+
+
 ```
 
 ***
